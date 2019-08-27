@@ -14,6 +14,12 @@ namespace OopFactory.X12.Hipaa.ClaimParser
     {
         static void Main(string[] args)
         {
+            if (args.Length != 3)
+            {
+                Console.WriteLine("Usage: Hipaa.ClaimParser <Source folder> <File mask> <Output folder>");
+                return;
+            }
+
             bool throwException = Convert.ToBoolean(ConfigurationManager.AppSettings["ThrowExceptionOnSyntaxErrors"]);
 
             var opts = new ExecutionOptions(args);
