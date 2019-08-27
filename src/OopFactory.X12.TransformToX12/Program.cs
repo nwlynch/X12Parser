@@ -9,11 +9,13 @@ namespace OopFactory.X12.TransformToX12
         {
             string x12Filename = args[0];
             string outputFilename = args.Length > 1 ? args[1] : x12Filename + ".edi";
+            // Error Checking added by N.W.L
             if (x12Filename.Length == 0)
             {
                 Console.WriteLine("There was an error reading the input file argument. Please check the path and filename.");
                 return;
             }
+            // end
             var fs = new StreamReader(x12Filename);
             string xmltext = fs.ReadToEnd();
             var parser = new Parsing.X12Parser();
