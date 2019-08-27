@@ -12,12 +12,13 @@ namespace OopFactory.X12.X12Parser
     {
         static void Main(string[] args)
         {
+            // Error Checking added by N.W.L           
             if (args.Length < 1)
             {
-                Console.WriteLine("Usage: X12Parser <Filename.edi>");
+                Console.WriteLine("Usage: X12Parser <Filename.edi>"); 
                 return;
             }
-
+            // end
             int maxBatchSize = 10 * 1012 * 1012; // 10 Mbytes
             if (ConfigurationManager.AppSettings["MaxBatchSize"] != null)
                 maxBatchSize = Convert.ToInt32(ConfigurationManager.AppSettings["MaxBatchSize"]);
@@ -25,12 +26,13 @@ namespace OopFactory.X12.X12Parser
             bool throwException = Convert.ToBoolean(ConfigurationManager.AppSettings["ThrowExceptionOnSyntaxErrors"]);
             
             string x12Filename = args[0];
+            // Error Checking added by N.W.L
             if (!File.Exists(x12Filename))
             {
                 Console.WriteLine("Source File " + x12Filename + " not found... ");
                 return;
             }
-
+            // end
             string outputFilename = args.Length > 1 ? args[1] : x12Filename + ".xml";
 
             OopFactory.X12.Parsing.X12Parser parser = new Parsing.X12Parser(throwException);
